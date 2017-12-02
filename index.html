@@ -1,25 +1,75 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title>My Soccer League</title>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <h1 id = "bigOne"> </h1>
-        <script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
-        <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyDSIxb1O2hS9jzGbcs46Ir3h2CLdRVkAtU",
-            authDomain: "mysoccerleague-7ef10.firebaseapp.com",
-            databaseURL: "https://mysoccerleague-7ef10.firebaseio.com",
-            projectId: "mysoccerleague-7ef10",
-            storageBucket: "mysoccerleague-7ef10.appspot.com",
-            messagingSenderId: "283382151291"
-        };
-        firebase.initializeApp(config);
         
-        var bigOne = document.getElementById('bigOne');
-        var dbRef = firebase.database().ref().child('text');
-        dbRef.on('value', snap => bigOne.innerText = snap.val());
+        <div class ='' style ="min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+        min-height: 100vh; /* These two lines are counted as one :-)       */
+      
+        display: flex;
+        align-items: center;" >
+        
+            <div class ='container col-lg-4' >
+                    <div class="input-group" style="">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input id="email" type="text" class="form-control" name="email" placeholder="Email">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+                    </div><br>
+                <button type="button" id='loginButton' class ='btn btn-primary'>Submit</button>
+                <label class="form-check-label">
+                    I am a new user<input class="form-check-input" id ="newUser" type="checkbox" value="">
+                </label>
+            </div>
+        </div>
+        <script src="app.js"></script>
+        <script>
+            var loginBtn = document.getElementById('loginButton');
+
+            loginBtn.addEventListener('click', e=>{
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const auth = firebase.auth();
+                var promise;
+                
+                if(document.getElementById('newUser').checked){
+                    promise = auth.createUserWithEmailAndPassword(email,password);
+                    
+                    console.log(promise.a);
+                }
+                else{
+                    promise = auth.signInWithEmailAndPassword(email,password);
+                    console.log(promise);
+                   // window.location = "home.html";
+                }
+                //promise.catch(e => console.log(e.message));
+                auth.onAuthStateChanged(firebase=> {
+                    if(firebase){
+                        //console.log(firebase);
+                    }
+                    else{
+                        console.log("Not log in");
+                    }
+                });
+
+            })
+            
+            
         </script>
     </body>
 </html>
