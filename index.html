@@ -3,7 +3,7 @@
         <title>My Soccer League</title>
     </head>
     <body>
-        
+        <h1 id = "bigOne"> </h1>
         <script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
         <script>
         // Initialize Firebase
@@ -16,6 +16,10 @@
             messagingSenderId: "283382151291"
         };
         firebase.initializeApp(config);
+        
+        var bigOne = document.getElementById('bigOne');
+        var dbRef = firebase.database().ref().child('text');
+        dbRef.on('value', snap => bigOne.innerText = snap.val());
         </script>
     </body>
 </html>
