@@ -21,24 +21,47 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="createLeague.html">Create new League</a>
+                <a class="nav-item nav-link" href="#">Create new League</a>
                 </div>
             </div>
         </nav>
         <div class="row container">
-            <div class="sidebar col-lg-3 col-sm-12" id="sidebar" style ='background-color:gold'>
-                <div class="row" id="sidebar-header">
-                    <button class="col-lg-6 col-xs-6 btn btn-secondary">My Games</button>
-                    <button class="col-lg-6 col-xs-6 btn btn-secondary" type="">My Leagues</button>
-                </div>
-                <div class="row col-lg-12" style ='background-color:aqua' >
-                    <a href="">Team1</a>
-                </div>
-                <div class="row col-lg-13 text-lg-center"  style ='background-color:bisque'>Team 2</div>
-            </div>
+            <h1>League's information</h1>            
         </div>
+            <form class="container" >
+                <div class="form-group">
+                    <label for="leagueName">Leagues's name</label>
+                    <input type="leagueName" class="form-control" id="leagueName" 
+                    placeholder="Enter name here">
+                </div>
+                <div class="form-group">
+                    <label for="numGames">Number of games against other teams</label>
+                    <select class="form-control" id="numGames">
+                    <option>1</option>
+                    <option>2</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Extra comments</label>
+                    <textarea class="form-control" id="extraComment" rows="3"></textarea>
+                </div>
+                <button class="btn" id="btnSubmit">Submit</button>
+            </form>
+        
+        
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
         <script src="app.js"></script>
+        <script>
+            const submitBtn = document.getElementById('btnSubmit');
+            submitBtn.addEventListener('click',e=>{
+                const leagueName = document.getElementById('leagueName').value;
+                const numGames = document.getElementById('numGames').value;
+                const comment = document.getElementById('extraComment').value;
+
+                
+
+            })
+        </script>
     </body>
 </html>
